@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "notionApi": {
+      "type": "local",
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "-e",
+        "OPENAPI_MCP_HEADERS={\"Authorization\": \"Bearer $NOTION_API_KEY\", \"Notion-Version\": \"2022-06-28\"}",
+        "mcp/notion"
+      ],
+      "env": {
+        "NOTION_API_KEY": "COPILOT_MCP_NOTION_API_KEY"
+      },
+      "tools": ["*"]
+    }
+  }
+}

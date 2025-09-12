@@ -1,0 +1,14 @@
+# Preinstall steps for Copilot coding agent environment
+# Keep this minimal and fast.
+
+steps:
+  - name: Setup .NET 8
+    uses: actions/setup-dotnet@v4
+    with:
+      dotnet-version: '8.0.x'
+  - name: Restore dependencies
+    run: |
+      dotnet restore || true
+  - name: Install dotnet format (optional)
+    run: |
+      dotnet tool install -g dotnet-format || true

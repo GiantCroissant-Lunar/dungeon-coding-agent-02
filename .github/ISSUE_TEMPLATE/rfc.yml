@@ -1,0 +1,41 @@
+name: Game RFC
+description: Small, well-scoped task for Copilot to implement
+labels: [rfc, agent]
+title: "Game-RFC-###: <Short title>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep scope minimal. Copilot works best with clear acceptance criteria and file hints.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Goal
+      description: What needs to be built or changed?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria (checklist)
+      description: List explicit, testable criteria
+      value: |
+        - [ ] Builds on .NET 8 with no warnings
+        - [ ] Adds/updates unit tests where applicable
+        - [ ] Manual smoke steps documented
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Files to touch / hints
+      description: Point Copilot to expected locations
+    validations:
+      required: false
+  - type: textarea
+    id: manual
+    attributes:
+      label: Manual verification steps
+      description: Minimal steps to verify the feature in console
+    validations:
+      required: true

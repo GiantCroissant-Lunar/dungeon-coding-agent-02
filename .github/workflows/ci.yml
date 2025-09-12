@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+    branches: ["**"]
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore
+        run: |
+          dotnet restore
+      - name: Build (warnings as errors)
+        run: |
+          dotnet build --nologo -warnaserror
+      - name: Format check
+        run: |
+          dotnet tool install -g dotnet-format || true
+          dotnet format --verify-no-changes || (echo "Run dotnet format locally" && exit 1)
+      - name: Test
+        run: |
+          dotnet test --nologo --verbosity minimal
